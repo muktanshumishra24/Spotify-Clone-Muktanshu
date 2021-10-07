@@ -4,6 +4,8 @@ export const initialState = {
   playlists: [],
   playing: false,
   item: null,
+//   remove after dev
+//   token:"28838839392020njjnkvnflvs"
 };
 
 const reducer = (state,action) =>{
@@ -19,6 +21,10 @@ const reducer = (state,action) =>{
             return{
                 ...state,
                 token:action.token
+            }
+        case "SET_PLAYLISTS":
+            return{
+                ...state,playlists:action.playlists,
             }
         default:
             return state;

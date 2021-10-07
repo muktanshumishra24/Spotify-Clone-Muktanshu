@@ -3,10 +3,18 @@ import "./Sidebar.css";
 import SidebarOption from './SidebarOption';
 import { MdHomeFilled } from "react-icons/md";
 import { AiOutlineSearch } from "react-icons/ai";
-import { VscLibrary} from "react-icons/vsc";
+import { BiLibrary, BiHeartSquare } from "react-icons/bi";
+// import { GoDiffAdded } from "react-icons/go";
+import { VscDiffAdded } from "react-icons/vsc";
+import { CgMediaPodcast } from "react-icons/cg";
+
+
+
+import { useDataLayerValue } from './DataLayer';
 
 
 function Sidebar() {
+  const[{ playlists },dispatch] = useDataLayerValue();
     return (
       <div className="sidebar">
         <img
@@ -16,7 +24,22 @@ function Sidebar() {
         />
         <SidebarOption Icon={MdHomeFilled} heading="Home" />
         <SidebarOption Icon={AiOutlineSearch} heading="Search" />
-        <SidebarOption Icon={VscLibrary} heading=" Your Library" />
+        <SidebarOption
+          Icon={BiLibrary}
+          heading=" Your Library"
+          background-color="#fff"
+        />
+        <br />
+        <br/>
+        <SidebarOption Icon={VscDiffAdded} heading="Add Playlist" />
+        <SidebarOption Icon={BiHeartSquare} heading="Liked Songs" />
+        <SidebarOption Icon={CgMediaPodcast} heading="Your Episodes" />
+        {/* <strong className="sidebar-title">PLAYLISTS</strong> */}
+        <hr />
+
+        {playlists?.items?.map((playlist) => (
+          <SidebarOption heading={playlist.name} />
+        ))}
       </div>
     );
 }
